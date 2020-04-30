@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+# open-wrapper
+
+# 20200430
+# 0.0.0
+
+# Description: A wrapper for macOS' open command so as to extend it with shortcuts.
+
+# Notes:
+# 1. It is intended that this be aliased to `open`.
+
+CONFIG_FILENAME = '~/.config/open-wrapper/config.rb'
+
+def config_filename
+  File.expand_path(CONFIG_FILENAME)
+end
+
+def config_file
+  File.read(config_filename)
+end
+
+def config
+  instance_eval(config_file)
+end
+
+def labels
+  config.keys
+end
+
+def open_string
+  argument_string = ARGV.join
+  if labels.include?(argument_string)
+    label = argument_string
+    if config[label].is_a?(String)
+      `#{config[label]}`
+    else
+      config[label].call
+    end
+  else
+    argument_string
+  end
+end
+
+def main
+  system "open #{open_string}"
+end
+
+main
