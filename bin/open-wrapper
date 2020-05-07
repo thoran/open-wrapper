@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # open-wrapper
 
-# 20200430
-# 0.0.0
+# 20200507
+# 0.1.0
 
 # Description: A wrapper for macOS' open command so as to extend it with shortcuts.
 
@@ -27,7 +27,7 @@ def labels
   config.keys
 end
 
-def open_string
+def open_strings
   argument_string = ARGV.join
   if labels.include?(argument_string)
     label = argument_string
@@ -42,7 +42,9 @@ def open_string
 end
 
 def main
-  system "open #{open_string}"
+  [open_strings].flatten.each do |open_string|
+    system "open #{open_string}"
+  end
 end
 
 main
