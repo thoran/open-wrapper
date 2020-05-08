@@ -2,12 +2,20 @@
 # open-wrapper
 
 # 20200507
-# 0.1.0
+# 0.1.1
 
 # Description: A wrapper for macOS' open command so as to extend it with shortcuts.
 
 # Notes:
 # 1. It is intended that this be aliased to `open`.
+
+# Changes:
+# Enable a single command to be able to open multiple entries.
+# ---
+# 1. /open_string()/open_strings()/
+# 2. ~ main(), so that it loops over what is returned from open_strings().
+# 0/1
+# 3. ~ open_strings(), so that it doesn't run the value, but merely returns the string therein.
 
 CONFIG_FILENAME = '~/.config/open-wrapper/config.rb'
 
@@ -32,7 +40,7 @@ def open_strings
   if labels.include?(argument_string)
     label = argument_string
     if config[label].is_a?(String)
-      `#{config[label]}`
+      config[label]
     else
       config[label].call
     end
