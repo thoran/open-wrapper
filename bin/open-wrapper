@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # open-wrapper
 
-# 20200507
-# 0.1.1
+# 20241110
+# 0.1.2
 
 # Description: A wrapper for macOS' open command so as to extend it with shortcuts.
 
@@ -16,6 +16,8 @@
 # 2. ~ main(), so that it loops over what is returned from open_strings().
 # 0/1
 # 3. ~ open_strings(), so that it doesn't run the value, but merely returns the string therein.
+# 1/2
+# 4. ~ main(): assign the command to a variable first before using, to assist with debugging.
 
 CONFIG_FILENAME = '~/.config/open-wrapper/config.rb'
 
@@ -50,8 +52,9 @@ def open_strings
 end
 
 def main
-  [open_strings].flatten.each do |open_string|
-    system "open #{open_string}"
+  [open_strings].flatten.each_with_index do |open_string, i|
+    command = "open #{open_string}"
+    system(command)
   end
 end
 
