@@ -1,29 +1,14 @@
 #!/usr/bin/env ruby
 # open-wrapper
 
-# 20261109
-# 0.1.3
+# 20261111
+# 0.1.4
 
 # Description: A wrapper for macOS' open command so as to extend it with shortcuts.
 
 # Notes:
 # 1. It is intended that this be aliased to `open`.
 # 2. A shortcut is recognised only when it is the sole argument. Anything else is passed to open as separate arguments, without a shell.
-
-# Changes:
-# Enable a single command to be able to open multiple entries.
-# ---
-# 1. /open_string()/open_strings()/
-# 2. ~ main(), so that it loops over what is returned from open_strings().
-# 0/1
-# 3. ~ open_strings(), so that it doesn't run the value, but merely returns the string therein.
-# 1/2
-# 4. ~ main(): assign the command to a variable first before using, to assist with debugging.
-# 2/3
-# 5. ~ main(): Arguments which aren't a shortcut reach open intact, so as `open -a 'System Settings'` is no longer run as `open -aSystem Settings`.
-#   a. + label(): The sole argument, where it is a shortcut.
-#   b. /open_strings()/shortcut_strings()/, which no longer joins ARGV.
-#   c. ~ main(): Shortcut strings are still run through the shell, since they carry quoting of their own; other arguments go to open directly.
 
 CONFIG_FILENAME = '~/.config/open-wrapper/config.rb'
 
