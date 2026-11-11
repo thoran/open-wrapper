@@ -2,13 +2,14 @@
 # open-wrapper
 
 # 20261111
-# 0.1.4
+# 0.1.5
 
 # Description: A wrapper for macOS' open command so as to extend it with shortcuts.
 
 # Notes:
 # 1. It is intended that this be aliased to `open`.
 # 2. A shortcut is recognised only when it is the sole argument. Anything else is passed to open as separate arguments, without a shell.
+# 3. Without a config there are no shortcuts, and everything is passed to open.
 
 CONFIG_FILENAME = '~/.config/open-wrapper/config.rb'
 
@@ -21,7 +22,11 @@ def config_file
 end
 
 def config
-  instance_eval(config_file)
+  if File.exist?(config_filename)
+    instance_eval(config_file)
+  else
+    {}
+  end
 end
 
 def labels

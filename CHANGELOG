@@ -2,6 +2,14 @@
 
 ## 20261111
 
+0.1.5: A missing config means no shortcuts, rather than stopping, + examples/config.rb.
+
+1. ~ config(): An empty Hash where there is no config file, rather than Errno::ENOENT stopping even `open-wrapper .`.
+2. + examples/config.rb: A config to copy into place, each kind of shortcut shown.
+3. ~ README.md: The config example is shortened, pointing to examples/config.rb, and a missing config is described.
+4. ~ bin/open-wrapper: + a note that without a config there are no shortcuts.
+5. ~ open-wrapper: /0.1.4/0.1.5/
+
 0.1.4: + CHANGELOG, + README.md, + LICENSE, and the Changes section retired from the script header.
 
 1. + CHANGELOG: An entry for each version, those for 0.1.0 to 0.1.3 taken from the header's Changes section.

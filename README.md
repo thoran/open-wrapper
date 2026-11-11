@@ -25,11 +25,17 @@ Shortcuts are read from `~/.config/open-wrapper/config.rb`, a Ruby file whose la
 ```ruby
 {
   'docs' => 'https://docs.ruby-lang.org',
-  'notes' => "-a TextEdit #{File.expand_path('~/notes.txt')}",
   'morning' => Proc.new{['https://news.ycombinator.com', 'https://lobste.rs']},
-  'pr' => Proc.new{`gh pr view --json url --jq .url`.strip},
 }
 ```
+
+A fuller example is in `examples/config.rb`, which can be copied into place to start from:
+
+```shell
+mkdir -p ~/.config/open-wrapper && cp examples/config.rb ~/.config/open-wrapper/config.rb
+```
+
+Without a config there are no shortcuts, and everything is passed to `open`, so as the alias can be set up before the config is.
 
 ## Notes
 
